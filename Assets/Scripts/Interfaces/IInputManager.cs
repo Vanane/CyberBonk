@@ -9,6 +9,8 @@ namespace Assets.Scripts.Interfaces
 {
     public interface IInputManager
     {
+        public void OnPressA();
+        public void OnPressE();
         public void OnPressLeft();
         public void OnPressRight();
         public void OnPressUp();

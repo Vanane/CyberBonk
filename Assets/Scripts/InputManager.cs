@@ -44,7 +44,8 @@ public class InputManager : MonoBehaviour, IInputManager
         Vector3 joystick = MoInput.GetZQSDDirection();
 
         if (joystick != Vector3.zero) OnJoystickMove(joystick); else OnStay();
-        if (Input.GetKey(KeyCode.E)) // Use();
+        if (Input.GetKey(KeyCode.A)) OnPressA();
+        if (Input.GetKey(KeyCode.E)) OnPressE();
         if (Input.GetKey(KeyCode.F)) // Melee();
         if (Input.GetKey(KeyCode.R)) // Reload();
         if (Input.GetKey(KeyCode.LeftShift)) // Run();
@@ -73,6 +74,18 @@ public class InputManager : MonoBehaviour, IInputManager
         firstClickRight = false;
 
     }
+
+    public void OnPressA()
+    {
+
+    }
+
+
+    public void OnPressE()
+    {
+
+    }
+
 
     public void OnPressDown()
     {
