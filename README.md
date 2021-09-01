@@ -20,9 +20,8 @@ This is more of a sorted-ish chores list than a roadmap, but still gives an idea
   - [x] Completed sub-task
   - [ ] Sub-task under consideration ?
   - [ ] ~~Cancelled task~~ (reason)
-  - [ ] 
 
-### 1st iteration : the basics
+### 1st iteration : The basics
 
 - [x] Primary character control
   - [x] WASD control
@@ -39,7 +38,7 @@ This is more of a sorted-ish chores list than a roadmap, but still gives an idea
 ### 2nd iteration : Arm yourselves
 
 - [ ] Advanced weapon system
-  - [ ] Accurate firing
+  - [ ] Accurate shooting
   - [x] Cooldown
   - [ ] Reloading
   - [ ] Physics & collision
@@ -57,16 +56,42 @@ This is more of a sorted-ish chores list than a roadmap, but still gives an idea
   - [ ] Equipment system
 - [ ] Controls
   - [ ] Weapon switching
+- [ ] City improvements
+  - [ ] Better daylight
+  - [ ] Day/night cycle
+  - [ ] Detailed buildings
+  - [ ] Detailed places
 
 ### 3rd iteration : Introducing cars
 
 - [ ] Cars
   - [ ] Physics
   - [ ] Controls
+    - [ ] Moving
+    - [ ] Steering
+    - [ ] Shooting
+    - [ ] Honking n neon lights
   - [ ] Types
     - [ ] Car
     - [ ] Truck
     - [ ] Bike ?
+
+### 4th iteration : Adding life to it
+
+- [ ] NPCs
+  - [ ] Citizens
+  - [ ] IA, routines & schedules
+  - [ ] Cars
+
+### 5th iteration : 
+
+
+
+## Compatibility
+
+For now, I only build it on Windows, but Unity allows compilation for Linux and Mac OS.
+
+~~I won't support Mac OS tho :^)~~
 
 ## Resources
 

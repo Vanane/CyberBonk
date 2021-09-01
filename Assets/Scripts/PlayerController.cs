@@ -7,11 +7,7 @@ using UnityExtensions;
 
 public class PlayerController : MonoBehaviour
 {
-    public InputManager inputManager;
-
     public Weapon weapon;
-
-    public bool inputEnabled, mouseEnabled;
 
     // Player Stats
     public float velocity, speedDecay;
@@ -35,10 +31,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="isFirstClick">True if the click that provoked that shot was a first click, or a maintained click</param>
     public void Shoot(bool isFirstClick)
     {
-        if (mouseEnabled)
-        {
-            weapon.Shoot(isFirstClick);
-        }
+        weapon.Shoot(isFirstClick);
     }
 
 

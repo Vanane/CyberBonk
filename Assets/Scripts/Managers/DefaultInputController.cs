@@ -1,129 +1,150 @@
 using Assets.Scripts.Interfaces;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityExtensions;
 
-public class InputManager : MonoBehaviour, IInputManager
+public class DefaultInputController : InputController
 {
-    public PlayerController player;
     Rigidbody playerBody;
-
-    private bool firstClickLeft, firstClickRight, firstClickMiddle;
 
 
     private void Start()
     {
         playerBody = player.GetComponent<Rigidbody>();
+        activePanels = new List<GameObject>();
     }
 
 
     private void Update()
-    {
-        DetectMouseInputs();
+    { 
+
     }
 
 
     void FixedUpdate()
     {
-        DetectInputs();
+
     }
 
 
-    void DetectMouseInputs()
-    {
-        if (Input.GetKey(KeyCode.Mouse0)) OnClickLeft(Input.mousePosition, firstClickLeft); else firstClickLeft = true;
-        if (Input.GetKey(KeyCode.Mouse2)) OnClickMiddle(Input.mousePosition, firstClickMiddle); else firstClickMiddle = true;
-        if (Input.GetKey(KeyCode.Mouse1)) OnClickRight(Input.mousePosition, firstClickRight); else firstClickRight = true;
-    }
-
-
-    void DetectInputs()
-    {
-        int scrollDelta = MoInput.ScrollHasChanged();
-        Vector3 joystick = MoInput.GetZQSDDirection();
-
-        if (joystick != Vector3.zero) OnJoystickMove(joystick); else OnStay();
-        if (Input.GetKey(KeyCode.A)) OnPressA();
-        if (Input.GetKey(KeyCode.E)) OnPressE();
-        if (Input.GetKey(KeyCode.F)) // Melee();
-        if (Input.GetKey(KeyCode.R)) // Reload();
-        if (Input.GetKey(KeyCode.LeftShift)) // Run();
-        if (scrollDelta > 0) OnScrollUp();
-        if (scrollDelta < 0) OnScrollDown();
-        OnMouseMove(Input.mousePosition);        
-    }
-
-
-    public void OnClickLeft(Vector3 mousePos, bool firstClick)
+    override public void OnClickLeft(Vector3 mousePos, bool firstClick)
     {
         player.Shoot(firstClick);
-        firstClickLeft = false;
     }
 
-    public void OnClickMiddle(Vector3 mousePos, bool firstClick)
-    {
-        Debug.Log("Clicked at " + mousePos);
-        firstClickMiddle = false;
 
-    }
-
-    public void OnClickRight(Vector3 mousePos, bool firstClick)
-    {
-        Debug.Log("Clicked at " + mousePos);
-        firstClickRight = false;
-
-    }
-
-    public void OnPressA()
+    override public void OnClickRight(Vector3 mousePos, bool firstClick)
     {
 
     }
 
 
-    public void OnPressE()
+    override public void OnClickMiddle(Vector3 mousePos, bool firstClick)
     {
 
     }
 
 
-    public void OnPressDown()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnPressLeft()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnPressRight()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnPressUp()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnScrollDown()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnScrollUp()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnSpace()
+    override public void OnPressA(bool firstClick)
     {
         throw new System.NotImplementedException();
     }
 
 
-    public void OnJoystickMove(Vector3 move)
+    override public void OnPressE(bool firstClick)
+    {
+        throw new System.NotImplementedException();
+    }
+
+
+    override public void OnPressF(bool firstClick)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    override public void OnPressI(bool firstClick)
+    {
+        if(firstClick)
+        {
+            TogglePanel(InventoryPanel);
+        }
+    }
+
+    override public void OnPressK(bool firstClick)
+    {
+        if (firstClick)
+        {
+            TogglePanel(SkillsPanel);
+        }
+    }
+
+    override public void OnPressL(bool firstClick)
+    {
+        if (firstClick)
+        {
+            TogglePanel(MissionsPanel);
+        }
+    }
+
+
+    override public void OnPressR(bool firstClick)
+    {
+        throw new System.NotImplementedException();
+    }
+
+
+    override public void OnPressShift(bool firstClick)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    /*
+    override public void OnPressEscape(bool firstClick)
+    {
+        }
+    }*/
+
+
+    override public void OnPressDown()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    override public void OnPressLeft()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    override public void OnPressRight()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    override public void OnPressUp()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    override public void OnScrollDown()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    override public void OnScrollUp()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    override public void OnSpace()
+    {
+        throw new System.NotImplementedException();
+    }
+
+
+    override public void OnJoystickMove(Vector3 move)
     {
         playerBody.velocity -= new Vector3(playerBody.velocity.x, 0, playerBody.velocity.z) * player.speedDecay;
         //Vector3 force = move * player.velocity * 1 / Mathf.Max(1, playerBody.velocity.magnitude);
@@ -132,7 +153,7 @@ public class InputManager : MonoBehaviour, IInputManager
     }
 
 
-    public void OnStay()
+    override public void OnStay()
     {
         /*
         Vector3 force = new Vector3(-playerBody.velocity.x, 0, -playerBody.velocity.z);
@@ -144,7 +165,7 @@ public class InputManager : MonoBehaviour, IInputManager
     }
 
 
-    public void OnMouseMove(Vector3 mousePos)
+    override public void OnMouseMove(Vector3 mousePos)
     {
         Vector3 worldPos = Camera.main.WorldToScreenPoint(player.transform.position);
         worldPos.x = mousePos.x - worldPos.x;
@@ -158,4 +179,32 @@ public class InputManager : MonoBehaviour, IInputManager
         float weaponAngle = Mathf.Atan2(weaponWorldPos.x, weaponWorldPos.y) * Mathf.Rad2Deg;
         player.weapon.transform.rotation = Quaternion.Euler(new Vector3(0, weaponAngle, 0));
     }
+
+    
+    public void TogglePanel(GameObject panel)
+    {
+        if (activePanels.Contains(panel))
+        {
+            ClosePanel(panel);
+        }
+        else
+        {
+            OpenPanel(panel);
+        }
+    }
+
+
+    public void ClosePanel(GameObject panel)
+    {
+        panel.SetActive(false);
+        activePanels.Remove(panel);
+    }
+
+
+    public void OpenPanel(GameObject panel)
+    {
+        panel.SetActive(true);
+        activePanels.Add(panel);
+    }
+
 }

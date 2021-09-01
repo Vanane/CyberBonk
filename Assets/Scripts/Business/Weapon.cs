@@ -72,7 +72,6 @@ namespace Assets.Scripts.Business
         {
             Bullet b = Instantiate(bulletPrefab, transform.position + transform.forward, transform.rotation);
             b.body.AddForce(b.transform.forward * b.speed);
-            Debug.Log($"{b} instantiated");
         }
     }
 }

@@ -53,13 +53,16 @@
     <UnityVersion>2020.3.16f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Interfaces\IInputManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\DefaultInputController.cs" />
+    <Compile Include="Assets\Scripts\Managers\InputController.cs" />
     <Compile Include="Assets\Scripts\Business\Weapon.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\TopDownCameraTracker.cs" />
+    <Compile Include="Assets\Scripts\TopDownCameraTracker.cs" />
     <Compile Include="Assets\Scripts\MoInput.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Business\Bullet.cs" />
-    <Compile Include="Assets\Scripts\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\InputManager.cs" />
+    <Compile Include="Assets\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
