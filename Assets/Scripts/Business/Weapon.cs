@@ -35,13 +35,14 @@ namespace Assets.Scripts.Business
         {
             if (isReloading) return;
             if (!isFirstClick && !isAutomatic) return;
-            if((lastShot + coolDown) <= Time.time)
+            if (curAmmo == 0)
             {
-                if (curAmmo == 0)
-                {
-                    Reload();
-                }
-                else
+                Reload();
+                return;
+            }
+            else
+            {
+                if ((lastShot + coolDown) <= Time.time)
                 {
                     Debug.Log("pew !");
                     lastShot = Time.time;
@@ -54,6 +55,7 @@ namespace Assets.Scripts.Business
 
         public void Reload()
         {
+            if (isReloading || curAmmo == maxAmmo) return;
             isReloading = true;
             Debug.Log("Reloading...");
             Invoke("Reloaded", reloadTime);

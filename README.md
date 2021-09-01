@@ -5,7 +5,7 @@ Jydge-style, Cyberpunk-themed, GTA Chinatown-like top-down role playing game.
 
 The first line says it all : top-down cyberpunk-themed RPG. Play some guy or gal into a dystopic futuristic city, shoot baddies, help goodies, or the reverse, depends only on you.
 
-Any contribution is welcomed, whether it is code, ideas, storylines, resources, advices, or simply your opinion on my work c:
+Any contribution is welcome, whether it is code, ideas, storylines, resources, advices, or simply your opinion on my work c:
 
 ## Roadmap
 
@@ -13,7 +13,7 @@ Any contribution is welcomed, whether it is code, ideas, storylines, resources, 
 
 This is more of a sorted-ish chores list than a roadmap, but still gives an idea of what's next.
 
-#### Legend
+### Legend
 
 - [ ] Task
   - [ ] Sub-task
@@ -31,16 +31,16 @@ This is more of a sorted-ish chores list than a roadmap, but still gives an idea
 - [x] Basic city setting
   - [x] Roads & Floors systems
   - [x] Buildings
-- [ ] UI
+- [x] UI
   - [ ] Main menu
-  - [ ] Pause menu
+  - [x] Pause menu
 
 ### 2nd iteration : Arm yourselves
 
 - [ ] Advanced weapon system
-  - [ ] Accurate shooting
+  - [x] Accurate shooting
   - [x] Cooldown
-  - [ ] Reloading
+  - [x] Reloading
   - [ ] Physics & collision
 - [ ] Waeponz !
   - [ ] Types & bullets
@@ -59,10 +59,10 @@ This is more of a sorted-ish chores list than a roadmap, but still gives an idea
 - [ ] City improvements
   - [ ] Better daylight
   - [ ] Day/night cycle
-  - [ ] Detailed buildings
-  - [ ] Detailed places
+  - [ ] (a bit) Detailed buildings
+  - [ ] (a bit) Detailed places
 
-### 3rd iteration : Introducing cars
+### 3rd iteration : Introducing cars®️
 
 - [ ] Cars
   - [ ] Physics

@@ -1144,9 +1144,9 @@ GameObject:
   m_Component:
   - component: {fileID: 71760152}
   - component: {fileID: 71760151}
+  - component: {fileID: 71760153}
   - component: {fileID: 71760150}
   - component: {fileID: 71760149}
-  - component: {fileID: 71760153}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -1249,8 +1249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6c940253a77e044b458266a2ed41ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 0}
-  inventoryPanel: {fileID: 0}
+  pausePanel: {fileID: 1412940880}
+  inventoryPanel: {fileID: 1247042843}
   skillsPanel: {fileID: 0}
   missionsPanel: {fileID: 0}
 --- !u!134 &73565833
@@ -2859,7 +2859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1457114190}
-  uiManager: {fileID: 0}
+  uiManager: {fileID: 71760153}
   paused: 0
 --- !u!4 &200088333
 Transform:
@@ -8648,55 +8648,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5943758966997573121, guid: b652cafa2453f64459e46a947f2f0bbb, type: 3}
   m_PrefabInstance: {fileID: 1506941232}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &595602736
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 595602737}
-  - component: {fileID: 595602738}
-  m_Layer: 0
-  m_Name: InputController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &595602737
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595602736}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 704223274}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &595602738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595602736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bab8a38d30006b48a6dac58da7fef2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1457114190}
-  PauseMenuPanel: {fileID: 1412940880}
-  InventoryPanel: {fileID: 1247042843}
-  SkillsPanel: {fileID: 0}
-  MissionsPanel: {fileID: 0}
-  activePanels: []
 --- !u!134 &595943240
 PhysicMaterial:
   m_ObjectHideFlags: 0
@@ -9701,7 +9652,7 @@ MonoBehaviour:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: OnMouseMove
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9716,7 +9667,7 @@ MonoBehaviour:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: OnJoystick
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9730,8 +9681,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnMouseClick
-        m_Mode: 1
+        m_MethodName: OnClickL
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9745,8 +9696,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnMouseClick
-        m_Mode: 1
+        m_MethodName: OnClickR
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9760,8 +9711,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnMouseClick
-        m_Mode: 1
+        m_MethodName: OnClickM
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9775,8 +9726,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnKey
-        m_Mode: 1
+        m_MethodName: OnA
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9790,8 +9741,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnKey
-        m_Mode: 1
+        m_MethodName: OnE
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9805,8 +9756,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnKey
-        m_Mode: 1
+        m_MethodName: OnF
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9820,8 +9771,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnKey
-        m_Mode: 1
+        m_MethodName: OnR
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9835,8 +9786,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnKey
-        m_Mode: 1
+        m_MethodName: OnI
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9850,8 +9801,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnKey
-        m_Mode: 1
+        m_MethodName: OnK
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9865,8 +9816,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnKey
-        m_Mode: 1
+        m_MethodName: OnL
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9881,7 +9832,7 @@ MonoBehaviour:
       - m_Target: {fileID: 200088332}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: OnEscape
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9900,8 +9851,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 396.83, y: 1, z: 576.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 595602737}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22327,6 +22277,7 @@ MonoBehaviour:
   weapon: {fileID: 375547292}
   velocity: 8
   speedDecay: 0.1
+  body: {fileID: 0}
 --- !u!136 &1457114191
 CapsuleCollider:
   m_ObjectHideFlags: 0

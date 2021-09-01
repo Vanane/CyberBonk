@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public PlayerController player;
+    public Player player;
     public UIManager uiManager;
-    
+
     public bool paused;
 
     private float previousTimeScale;
@@ -15,50 +15,99 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
     public void OnEscape(bool firstClick)
     {
-        if(uiManager.isPanelActive)
-        {
+        if (uiManager.isPanelActive && !paused)
             uiManager.CloseLastPanel();
+        else
+        {
+            if (firstClick)
+                if (paused)
+                    DoUnpause();
+                else
+                    DoPause();
         }
     }
 
 
-    public void OnKey(KeyCode key, bool firstClick)
+    public void OnClickL(bool firstClick)
     {
-
+        if (!paused)
+            player.Shoot(firstClick);
     }
 
 
-    public void OnMouseClick(KeyCode key, bool firstClick)
+    public void OnClickR(bool firstClick)
     {
+    }
 
+
+    public void OnClickM(bool firstClick)
+    {
+    }
+
+
+    public void OnA(bool firstClick)
+    {
+    }
+
+
+    public void OnE(bool firstClick)
+    {
+    }
+
+
+    public void OnF(bool firstClick)
+    {
+    }
+
+
+    public void OnR(bool firstClick)
+    {
+        if (!paused)
+            player.ReloadWeapon();
+    }
+
+
+    public void OnI(bool firstClick)
+    {
+    }
+
+
+    public void OnK(bool firstClick)
+    {
+    }
+
+    public void OnL(bool firstClick)
+    {
     }
 
 
     public void OnMouseMove(Vector3 direction)
     {
-
+        if (!paused)
+            player.LookAt(direction);
     }
 
 
     public void OnJoystick(Vector3 direction)
     {
-
+        if (!paused)
+            player.Move(direction);
     }
 
 
-    private void DoPause()
+    public void DoPause()
     {
         paused = true;
         previousTimeScale = Time.timeScale;
@@ -67,7 +116,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void DoUnpause()
+    public void DoUnpause()
     {
         uiManager.ClosePanel(UIManager.Panels.Pause);
         Time.timeScale = previousTimeScale;
