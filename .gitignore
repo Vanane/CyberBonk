@@ -2,3 +2,5 @@
 Temp/UnityLockfile
 Temp/
 Library/Artifacts/
+Build/
+Library/*[Cache]
