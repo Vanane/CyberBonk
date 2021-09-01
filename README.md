@@ -11,7 +11,7 @@ Any contribution is welcome, whether it is code, ideas, storylines, resources, a
 
 ### Reading the roadmap
 
-This is more of a sorted-ish chores list than a roadmap, but still gives an idea of what's next.
+This is more of a sorted-ish chores list than a roadmap, but still gives an idea of what is missing, what is planned, and what will be next.
 
 ### Legend
 
@@ -32,7 +32,7 @@ This is more of a sorted-ish chores list than a roadmap, but still gives an idea
   - [x] Roads & Floors systems
   - [x] Buildings
 - [x] UI
-  - [ ] Main menu
+  - [x] Main menu
   - [x] Pause menu
 
 ### 2nd iteration : Arm yourselves
