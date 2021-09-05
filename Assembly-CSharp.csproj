@@ -68,12 +68,13 @@
     <Compile Include="Assets\Scripts\Business\Items\BulletItem.cs" />
     <Compile Include="Assets\Scripts\MoInput.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\UI\PausePanel.cs" />
     <Compile Include="Assets\Scripts\Business\Items\UsableItem.cs" />
     <Compile Include="Assets\Scripts\Business\Bullet.cs" />
     <Compile Include="Assets\Scripts\Managers\InputManager.cs" />
     <Compile Include="Assets\Scripts\Business\Items\ItemRepository.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
-    <Compile Include="Assets\Scripts\UI\PausePanel.cs" />
+    <Compile Include="Assets\SelectedItemSlot.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

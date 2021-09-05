@@ -2,21 +2,51 @@ using Assets.Scripts.Business.Items;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
-    public Item item;
+    public UsableItem item;
+    public int count;
+    
+    public Image spriteImage;
+    public Text itemCount;
+    public Text itemName;
 
 
-    void Start()
+    virtual protected void Start()
     {
-        GetComponentInChildren<Image>().sprite = ResourceManager.GetInstance().GetSprite(item.spriteName);
+        Refresh();
     }
 
+
     // Update is called once per frame
-    void Update()
+    virtual protected void Update()
     {
         
+    }
+
+    virtual public void Refresh()
+    {
+        if (item != null)
+        {
+            spriteImage.sprite = ResourceManager.GetInstance().LoadSprite(item.spriteName);
+            itemCount.text = count > 1 ? count.ToString() : string.Empty;
+            itemName.text = item.name;
+        }
+        else
+        {
+            spriteImage.sprite = null;
+            spriteImage.color = new Color(0, 0, 0, 0);
+            itemCount.text = string.Empty;
+            itemName.text = string.Empty;
+
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log("prout" + name);
     }
 }

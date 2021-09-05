@@ -52,9 +52,10 @@ This is more of a sorted-ish chores list than a roadmap, but still gives an idea
     - [ ] Explosives
     - [ ] Swords
 - [ ] Inventory system
-  - [ ] Unlimited inventory
-  - [ ] Inventory UI
+  - [x] Unlimited inventory
+  - [x] Inventory UI
   - [ ] Equipment system
+  - [ ] Search option
 - [ ] Controls
   - [ ] Weapon switching
 - [ ] City improvements

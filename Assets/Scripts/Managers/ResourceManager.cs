@@ -59,12 +59,6 @@ public class ResourceManager : MonoBehaviour
     }
 
 
-    public Sprite GetSprite(string spriteName)
-    {
-        return loadedSprites.ContainsKey(spriteName) ? loadedSprites[spriteName] : null;
-    }
-
-
     public Sprite LoadSprite(string spriteName)
     {
         if (!loadedSprites.ContainsKey(spriteName))
