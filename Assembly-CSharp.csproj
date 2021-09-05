@@ -53,20 +53,27 @@
     <UnityVersion>2020.3.16f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Business\Items\Item.cs" />
+    <Compile Include="Assets\Scripts\UI\InventorySlot.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel.cs" />
+    <Compile Include="Assets\Scripts\Business\Items\WeaponItem.cs" />
+    <Compile Include="Assets\Scripts\Business\Items\Inventory.cs" />
     <Compile Include="Assets\Scripts\Interfaces\Collision\ICollideBullet.cs" />
+    <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Business\Weapon.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\TopDownCameraTracker.cs" />
+    <Compile Include="Assets\Scripts\Business\Player.cs" />
+    <Compile Include="Assets\Scripts\UI\TopDownCameraTracker.cs" />
+    <Compile Include="Assets\Scripts\UI\InventoryPanel.cs" />
+    <Compile Include="Assets\Scripts\Managers\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\Business\Items\BulletItem.cs" />
     <Compile Include="Assets\Scripts\MoInput.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Business\Items\UsableItem.cs" />
     <Compile Include="Assets\Scripts\Business\Bullet.cs" />
     <Compile Include="Assets\Scripts\Managers\InputManager.cs" />
-    <Compile Include="Assets\Scripts\Business\Items\Item.cs" />
-    <Compile Include="Assets\Scripts\ResizeScrollViewToFitContent.cs" />
-    <Compile Include="Assets\Scripts\SceneLoader.cs" />
-    <Compile Include="Assets\Scripts\UIManager.cs" />
-    <Compile Include="Assets\InventorySlot.cs" />
-    <Compile Include="Assets\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\Business\Items\ItemRepository.cs" />
+    <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\UI\PausePanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

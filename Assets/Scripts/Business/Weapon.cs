@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Business.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +10,25 @@ namespace Assets.Scripts.Business
 {
     public class Weapon : MonoBehaviour
     {
-        public float damage, coolDown, reloadTime, maxAmmo;
-        public bool isAutomatic;
+        WeaponItem weaponItem;
+
         public float curAmmo { get; private set; }
 
         private float lastShot;
         public bool isReloading { get; private set; }
 
-        public Bullet bulletPrefab;
 
         void Start()
         {
             lastShot = 0;
             isReloading = false;
-            curAmmo = maxAmmo;
+        }
+
+
+        public void Equip(WeaponItem weapon)
+        {
+            weaponItem = weapon;
+            curAmmo = weapon.magSize;
         }
 
 
@@ -30,11 +36,10 @@ namespace Assets.Scripts.Business
         /// Shoots a bullet, creating a prefab with a given impulse towards where the player is looking.
         /// </summary>
         /// <param name="isFirstClick">True if the click that provoked that shot was a first click, or a maintained click. A manual weapon won't shoot if it's a maintained click.</param>
-
         public void Shoot(bool isFirstClick)
         {
             if (isReloading) return;
-            if (!isFirstClick && !isAutomatic) return;
+            if (!isFirstClick && !weaponItem.isAutomatic) return;
             if (curAmmo == 0)
             {
                 Reload();
@@ -42,7 +47,7 @@ namespace Assets.Scripts.Business
             }
             else
             {
-                if ((lastShot + coolDown) <= Time.time)
+                if ((lastShot + weaponItem.coolDown) <= Time.time)
                 {
                     Debug.Log("pew !");
                     lastShot = Time.time;
@@ -55,25 +60,37 @@ namespace Assets.Scripts.Business
 
         public void Reload()
         {
-            if (isReloading || curAmmo == maxAmmo) return;
+            if (isReloading || curAmmo == weaponItem.magSize) return;
             isReloading = true;
             Debug.Log("Reloading...");
-            Invoke("Reloaded", reloadTime);
+            Invoke("Reloaded", weaponItem.reloadTime);
         }
 
 
         private void Reloaded()
         {
             isReloading = false;
-            curAmmo = maxAmmo;
+            curAmmo = weaponItem.magSize;
             Debug.Log("Reloaded !");
         }
 
 
         private void CreateBullet()
         {
-            Bullet b = Instantiate(bulletPrefab, transform.position + transform.forward, transform.rotation);
+            GameObject go = Instantiate(weaponItem.bulletAmmo.bulletPrefab, transform.position + transform.forward, transform.rotation);
+            Bullet b = go.GetComponent<Bullet>();   
             b.body.AddForce(b.transform.forward * b.speed);
+        }
+
+
+        /// <summary>
+        /// Returns true if the current weapon the entity has equipped is the one given in parameter. 
+        /// </summary>
+        /// <param name="weapon"></param>
+        /// <returns></returns>
+        public bool IsCurrentEquipped(WeaponItem weapon)
+        {
+            return weaponItem == weapon;
         }
     }
 }

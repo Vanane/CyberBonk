@@ -1,3 +1,4 @@
+using Assets.Scripts.Business.Items;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Debug.Log(ItemRepository.GetInstance() == null);
+        WeaponItem gun = ItemRepository.GetInstance().CopyItem<WeaponItem>(20);
+        player.inventory.AddItem(gun);
+        player.EquipWeapon(gun);
     }
 
     // Update is called once per frame
@@ -27,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public void OnEscape(bool firstClick)
     {
-        if (uiManager.isPanelActive && !paused)
+        if (uiManager.hasPanelsActive && !paused)
             uiManager.CloseLastPanel();
         else
         {
@@ -42,8 +46,10 @@ public class GameManager : MonoBehaviour
 
     public void OnClickL(bool firstClick)
     {
-        if (!paused)
+        if (!uiManager.hasPanelsActive && !paused)
+        {
             player.Shoot(firstClick);
+        }
     }
 
 
@@ -81,6 +87,8 @@ public class GameManager : MonoBehaviour
 
     public void OnI(bool firstClick)
     {
+        if(firstClick)
+            uiManager.TogglePanel(UIManager.Panels.Inventory);
     }
 
 

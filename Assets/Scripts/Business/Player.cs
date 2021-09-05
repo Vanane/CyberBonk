@@ -1,4 +1,5 @@
 using Assets.Scripts.Business;
+using Assets.Scripts.Business.Items;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityExtensions;
 
 public class Player : MonoBehaviour
 {
+    public Inventory inventory;
     public Weapon weapon;
 
     // Player Stats
@@ -13,16 +15,23 @@ public class Player : MonoBehaviour
 
     public Rigidbody body;
 
+    public Player()
+    {
+        inventory = new Inventory();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
 
+    public void EquipWeapon(WeaponItem weaponItem)
+    {
+        if(!weapon.IsCurrentEquipped(weaponItem))
+            weapon.Equip(weaponItem);
     }
 
 
