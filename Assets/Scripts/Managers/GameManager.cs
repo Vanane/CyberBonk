@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Debug.Log(ItemRepository.GetInstance() == null);
-        WeaponItem gun = ItemRepository.GetInstance().CopyItem<WeaponItem>(22);
+        RangedWeaponItem gun = ItemRepository.GetInstance().CopyItem<RangedWeaponItem>(22);
         player.inventory.AddItem(gun);
         player.EquipWeapon(gun);
     }
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         if (!uiManager.hasPanelsActive && !paused)
         {
-            player.Shoot(firstClick);
+            player.Attack(firstClick);
         }
     }
 

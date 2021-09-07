@@ -30,18 +30,37 @@ public class Player : MonoBehaviour
 
     public void EquipWeapon(WeaponItem weaponItem)
     {
+        GameObject weaponGO = weapon.gameObject;
         if(!weapon.IsCurrentEquipped(weaponItem))
+        {
+            Weapon newWeapon;
+            switch(weaponItem)
+            {
+                case RangedWeaponItem r:
+                    newWeapon = weaponGO.AddComponent<RangedWeapon>();
+                    break;
+                case MeleeWeaponItem m:
+                    newWeapon = weaponGO.AddComponent<MeleeWeapon>();
+                    break;
+                default:
+                    newWeapon = weaponGO.AddComponent<UnhandedWeapon>();
+                    break;
+            }
+            Destroy(weapon);
+
+            weapon = newWeapon;
             weapon.Equip(weaponItem);
+        }
     }
 
 
     /// <summary>
-    /// Asks the weapon to shoot
+    /// Asks the weapon to attack
     /// </summary>
-    /// <param name="isFirstClick">True if the click that provoked that shot was a first click, or a maintained click</param>
-    public void Shoot(bool isFirstClick)
+    /// <param name="isFirstClick">True if the click is a first click, false if a maintained click</param>
+    public void Attack(bool isFirstClick)
     {
-        weapon.Shoot(isFirstClick);
+        weapon.Attack(isFirstClick);
     }
 
 

@@ -45,7 +45,7 @@ public class ItemRepository : MonoBehaviour
             decayTime = 1,
             projectileCount = 6
         });
-        items.Add(20, new WeaponItem
+        items.Add(20, new RangedWeaponItem
         {
             name = "Revolver",
             spriteName = "",
@@ -57,7 +57,7 @@ public class ItemRepository : MonoBehaviour
             reloadTime = 2,
             weaponModel = ResourceManager.GetInstance().LoadModel("Revolver"),
         });
-        items.Add(21, new WeaponItem
+        items.Add(21, new RangedWeaponItem
         {
             name = "SMG",
             spriteName = "",
@@ -69,7 +69,7 @@ public class ItemRepository : MonoBehaviour
             reloadTime = 2,
             weaponModel = ResourceManager.GetInstance().LoadModel("SMG"),
         });
-        items.Add(22, new WeaponItem
+        items.Add(22, new RangedWeaponItem
         {
             name = "Shotgun",
             spriteName = "",

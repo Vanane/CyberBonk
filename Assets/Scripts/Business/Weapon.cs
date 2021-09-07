@@ -1,101 +1,52 @@
 ﻿using Assets.Scripts.Business.Items;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Business
 {
-    public class Weapon : MonoBehaviour
+    /// <summary>
+    /// MonoBehaviour that represents the behaviour of the player's weapon.
+    /// </summary>
+    public abstract class Weapon : MonoBehaviour
     {
+        public bool isReloading { get; protected set; }
 
-        public bool isReloading { get; private set; }
-        public float curAmmo { get; private set; }
-
-        private float lastShot;
+        protected float lastAttack;
         WeaponItem weaponItem;
 
         public GameObject weaponModel;
 
 
-        void Start()
+        virtual protected void Awake()
         {
-            lastShot = 0;
+            lastAttack = 0;
             isReloading = false;
+            if (weaponModel == null) weaponModel = transform.Find("Model").gameObject;
         }
 
 
-        public void Equip(WeaponItem weapon)
+        virtual public void Equip(WeaponItem weapon)
         {
             MeshFilter weaponMesh = weaponModel.GetComponent<MeshFilter>();
             weaponItem = weapon;
-            curAmmo = weapon.magSize;
             weaponMesh.mesh = weapon.weaponModel;
         }
 
 
-        /// <summary>
-        /// Shoots a bullet, creating a prefab with a given impulse towards where the player is looking.
-        /// </summary>
-        /// <param name="isFirstClick">True if the click that provoked that shot was a first click, or a maintained click. A manual weapon won't shoot if it's a maintained click.</param>
-        public void Shoot(bool isFirstClick)
+        virtual public void Attack(bool isFirstClick)
         {
-            if (isReloading) return;
-            if (!isFirstClick && !weaponItem.isAutomatic) return;
-            if (curAmmo == 0)
-            {
-                Reload();
-                return;
-            }
-            else
-            {
-                if ((lastShot + weaponItem.coolDown) <= Time.time)
-                {
-                    Debug.Log("pew !");
-                    lastShot = Time.time;
-                    curAmmo--;
-                    CreateBullets();
-                }
-            }
+
         }
 
 
-        public void Reload()
+        virtual public void Reload()
         {
-            if (isReloading || curAmmo == weaponItem.magSize) return;
-            isReloading = true;
-            Debug.Log("Reloading...");
-            Invoke("Reloaded", weaponItem.reloadTime);
+
         }
 
-
-        private void Reloaded()
+        virtual protected void Reloaded()
         {
-            isReloading = false;
-            curAmmo = weaponItem.magSize;
-            Debug.Log("Reloaded !");
-        }
-
-
-        private void CreateBullets()
-        {
-            for(int i = 0; i < weaponItem.bulletItem.projectileCount; i++)
-            {
-                Invoke("CreateBullet", weaponItem.bulletItem.delayBetweenProjectiles * i);
-            }
-        }
-
-
-        private Bullet CreateBullet()
-        {
-            Debug.Log(weaponItem.errorAngle);
-            GameObject go = Instantiate(weaponItem.bulletItem.projectile, transform.position + transform.forward, transform.rotation);
-            Bullet b = go.GetComponent<Bullet>();
-            b.bulletItem = weaponItem.bulletItem;
-            b.Shoot(weaponItem.bulletItem.velocity, weaponItem.bulletItem.decayTime, weaponItem.errorAngle);
-            return b;
+        
         }
 
 
@@ -108,5 +59,6 @@ namespace Assets.Scripts.Business
         {
             return weaponItem == weapon;
         }
+
     }
 }
