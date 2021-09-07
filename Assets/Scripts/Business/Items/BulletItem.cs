@@ -11,8 +11,11 @@ namespace Assets.Scripts.Business.Items
     {
         public float damage;
         public float velocity;
+        public float decayTime;
+        public int projectileCount = 1;
+        public float delayBetweenProjectiles = 0.0f;
 
-        public GameObject bulletPrefab;
+        public GameObject projectile;
 
 
         override public object Clone()

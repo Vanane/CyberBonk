@@ -44,18 +44,20 @@ This is more of a sorted-ish chores list than a roadmap, but still gives an idea
   - [x] Reloading
   - [ ] Physics & collision
 - [ ] Waeponz !
-  - [ ] Types & bullets
-    - [x] Pistol
-    - [ ] SMG
-    - [ ] LMG
-    - [ ] Shotgun
-    - [ ] Explosives
+  - [ ] Types (& bullets)
+    - [x] Pistol (plumb)
+    - [x] SMG (plumb)
+    - [ ] LMG (plumb)
+    - [x] Shotgun (shell)
+    - [ ] Explosives (explosion)
     - [ ] Swords
 - [ ] Inventory system
   - [x] Unlimited inventory
   - [x] Inventory UI
   - [ ] Equipment system
-  - [ ] Search option
+  	- [ ] (Un)Equipping items
+  	- [ ] Using consumables
+  - [x] Search option
 - [ ] Controls
   - [ ] Weapon switching
 - [ ] City improvements
@@ -63,6 +65,7 @@ This is more of a sorted-ish chores list than a roadmap, but still gives an idea
   - [ ] Day/night cycle
   - [ ] (a bit) Detailed buildings
   - [ ] (a bit) Detailed places
+- [ ] Training dummies
 
 ### 3rd iteration : Introducing cars®️
 

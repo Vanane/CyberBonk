@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Debug.Log(ItemRepository.GetInstance() == null);
-        WeaponItem gun = ItemRepository.GetInstance().CopyItem<WeaponItem>(20);
+        WeaponItem gun = ItemRepository.GetInstance().CopyItem<WeaponItem>(22);
         player.inventory.AddItem(gun);
         player.EquipWeapon(gun);
     }

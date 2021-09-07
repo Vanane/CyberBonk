@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Business.Items
 {
@@ -10,8 +11,10 @@ namespace Assets.Scripts.Business.Items
     {
         public float coolDown, reloadTime, magSize;
         public bool isAutomatic;
+        public float errorAngle;
 
-        public BulletItem bulletAmmo;
+        public BulletItem bulletItem;
+        public Mesh weaponModel;
 
 
         override public object Clone()

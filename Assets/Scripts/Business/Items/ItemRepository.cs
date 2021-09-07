@@ -30,20 +30,58 @@ public class ItemRepository : MonoBehaviour
         {
             name = "Bullet",
             spriteName = "",
-            bulletPrefab = ResourceManager.GetInstance().LoadPrefab("Bullet", ResourceManager.PrefabType.Items),
+            projectile = ResourceManager.GetInstance().LoadPrefab("Bullet", ResourceManager.PrefabType.Items),
             damage = 10,
-            velocity = 10
+            velocity = 75,
+            decayTime = 3
+        });
+        items.Add(1, new BulletItem
+        {
+            name = "Shell",
+            spriteName = "",
+            projectile = ResourceManager.GetInstance().LoadPrefab("Bullet", ResourceManager.PrefabType.Items),
+            damage = 100,
+            velocity = 75,
+            decayTime = 1,
+            projectileCount = 6
         });
         items.Add(20, new WeaponItem
         {
             name = "Revolver",
             spriteName = "",
-            bulletAmmo = (BulletItem)items[0],
-            coolDown = 1,
+            bulletItem = (BulletItem)items[0],
+            coolDown = 0.8f,
             isAutomatic = false,
             magSize = 6,
-            reloadTime = 2
+            errorAngle = 0,
+            reloadTime = 2,
+            weaponModel = ResourceManager.GetInstance().LoadModel("Revolver"),
         });
+        items.Add(21, new WeaponItem
+        {
+            name = "SMG",
+            spriteName = "",
+            bulletItem = (BulletItem)items[0],
+            coolDown = 0.05f,
+            isAutomatic = true,
+            magSize = 30,
+            errorAngle = 30,
+            reloadTime = 2,
+            weaponModel = ResourceManager.GetInstance().LoadModel("SMG"),
+        });
+        items.Add(22, new WeaponItem
+        {
+            name = "Shotgun",
+            spriteName = "",
+            bulletItem = (BulletItem)items[1],
+            coolDown = 0,
+            isAutomatic = false,
+            magSize = 2,
+            errorAngle = 60,
+            reloadTime = 1,
+            weaponModel = ResourceManager.GetInstance().LoadModel("Shotgun"),
+        });
+
     }
 
 

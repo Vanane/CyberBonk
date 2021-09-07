@@ -10,12 +10,14 @@ namespace Assets.Scripts.Business
 {
     public class Weapon : MonoBehaviour
     {
-        WeaponItem weaponItem;
 
+        public bool isReloading { get; private set; }
         public float curAmmo { get; private set; }
 
         private float lastShot;
-        public bool isReloading { get; private set; }
+        WeaponItem weaponItem;
+
+        public GameObject weaponModel;
 
 
         void Start()
@@ -27,8 +29,10 @@ namespace Assets.Scripts.Business
 
         public void Equip(WeaponItem weapon)
         {
+            MeshFilter weaponMesh = weaponModel.GetComponent<MeshFilter>();
             weaponItem = weapon;
             curAmmo = weapon.magSize;
+            weaponMesh.mesh = weapon.weaponModel;
         }
 
 
@@ -52,7 +56,7 @@ namespace Assets.Scripts.Business
                     Debug.Log("pew !");
                     lastShot = Time.time;
                     curAmmo--;
-                    CreateBullet();
+                    CreateBullets();
                 }
             }
         }
@@ -75,11 +79,23 @@ namespace Assets.Scripts.Business
         }
 
 
-        private void CreateBullet()
+        private void CreateBullets()
         {
-            GameObject go = Instantiate(weaponItem.bulletAmmo.bulletPrefab, transform.position + transform.forward, transform.rotation);
-            Bullet b = go.GetComponent<Bullet>();   
-            b.body.AddForce(b.transform.forward * b.speed);
+            for(int i = 0; i < weaponItem.bulletItem.projectileCount; i++)
+            {
+                Invoke("CreateBullet", weaponItem.bulletItem.delayBetweenProjectiles * i);
+            }
+        }
+
+
+        private Bullet CreateBullet()
+        {
+            Debug.Log(weaponItem.errorAngle);
+            GameObject go = Instantiate(weaponItem.bulletItem.projectile, transform.position + transform.forward, transform.rotation);
+            Bullet b = go.GetComponent<Bullet>();
+            b.bulletItem = weaponItem.bulletItem;
+            b.Shoot(weaponItem.bulletItem.velocity, weaponItem.bulletItem.decayTime, weaponItem.errorAngle);
+            return b;
         }
 
 

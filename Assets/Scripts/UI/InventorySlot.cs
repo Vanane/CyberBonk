@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
-    public UsableItem item;
+    public UsableItem item { get; protected set; }
     public int count;
     
     public Image spriteImage;
@@ -29,7 +29,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
     virtual public void Refresh()
     {
-        if (item != null)
+        if (item != null && count > 0)
         {
             spriteImage.sprite = ResourceManager.GetInstance().LoadSprite(item.spriteName);
             itemCount.text = count > 1 ? count.ToString() : string.Empty;
@@ -48,5 +48,12 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("prout" + name);
+    }
+
+
+    public void SetItem(UsableItem i)
+    {
+        item = i;
+        Refresh();
     }
 }

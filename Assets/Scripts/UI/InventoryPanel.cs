@@ -65,7 +65,7 @@ public class InventoryPanel : UIPanel
             slotList.Add(slot);
 
             if(itemIterator.MoveNext())
-                slot.GetComponentInChildren<Text>().text = itemIterator.Current.name;
+                slot.GetComponent<InventorySlot>().SetItem(itemIterator.Current);
         }
     }
 }
