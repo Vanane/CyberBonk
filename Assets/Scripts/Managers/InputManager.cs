@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     private Dictionary<KeyCode, UnityEvent<bool>> inputEvents, mouseEvents;
 
     public UnityEvent<Vector3> OnMouseMove, OnJoystick;
-    public UnityEvent<bool> OnClickL, OnClickR, OnClickM, OnA, OnE, OnF, OnR, OnI, OnK, OnL, OnEscape;
+    public UnityEvent<bool> OnClickL, OnClickR, OnClickM, OnA, OnE, OnF, OnR, OnI, OnK, OnL, OnAlpha1, OnAlpha2, OnEscape;
 
 
     private void Start()
@@ -34,6 +34,9 @@ public class InputManager : MonoBehaviour
             { KeyCode.I, false },
             { KeyCode.K, false },
             { KeyCode.L, false },
+
+            { KeyCode.Alpha1, false },
+            { KeyCode.Alpha2, false },
 
             { KeyCode.Escape, false },
         };
@@ -55,6 +58,9 @@ public class InputManager : MonoBehaviour
             { KeyCode.I, OnI },
             { KeyCode.K, OnK },
             { KeyCode.L, OnL },
+
+            { KeyCode.Alpha1, OnAlpha1 },
+            { KeyCode.Alpha2, OnAlpha2 },
         };
     }
 
@@ -85,9 +91,11 @@ public class InputManager : MonoBehaviour
     void DetectInputs()
     {
         int scrollDelta = MoInput.ScrollHasChanged();
-        Vector3 joystick = MoInput.GetZQSDDirection();
-
-        OnJoystick.Invoke(joystick);
+        Vector3 joystick = MoInput.GetDirectionFromKeys(KeyCode.Z, KeyCode.Q, KeyCode.S, KeyCode.D);
+        if(!joystick.Equals(Vector3.zero))
+        {
+            OnJoystick.Invoke(joystick);
+        }
 
         foreach (KeyValuePair<KeyCode, UnityEvent<bool>> keyPressed in inputEvents)
         {

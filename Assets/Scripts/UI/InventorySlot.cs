@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
-    public UsableItem item { get; protected set; }
+    public Item item { get; protected set; }
     public int count;
     
     public Image spriteImage;
@@ -51,7 +51,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     }
 
 
-    public void SetItem(UsableItem i)
+    public void SetItem(Item i)
     {
         item = i;
         Refresh();

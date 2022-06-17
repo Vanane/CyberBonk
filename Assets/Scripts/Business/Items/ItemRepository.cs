@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Business.Items;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ItemRepository : MonoBehaviour
@@ -85,16 +86,24 @@ public class ItemRepository : MonoBehaviour
     }
 
 
-    public T CreateCopy<T>(T i) where T : Item
+    public T CopyItem<T>(T i) where T : Item
     {
         return (T) i.Clone();
     }
 
 
-    public T CopyItem<T>(int id) where T : Item
+    public T GetInstanceOfItem<T>(int id) where T : Item
     {
         if (items.ContainsKey(id))
             return (T)items[id].Clone();
+        else return null;
+    }
+
+    public T GetInstanceOfItem<T>(string name) where T : Item
+    {
+        Item item = items.First(x => x.Value.name == name).Value;
+        if (item != null)
+            return (T)item.Clone();
         else return null;
     }
 }

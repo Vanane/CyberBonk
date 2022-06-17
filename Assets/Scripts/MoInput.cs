@@ -25,13 +25,13 @@ namespace UnityExtensions
         }
 
 
-        public static Vector3 GetZQSDDirection()
+        public static Vector3 GetDirectionFromKeys(KeyCode up, KeyCode left, KeyCode down, KeyCode right)
         {
             Vector3 ret = new Vector3
             {
-                x = Input.GetKey(KeyCode.D) ? 1 : Input.GetKey(KeyCode.Q) ? -1 : 0,
+                x = Input.GetKey(right) ? 1 : Input.GetKey(left) ? -1 : 0,
                 y = 0,
-                z = Input.GetKey(KeyCode.Z) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0,
+                z = Input.GetKey(up) ? 1 : Input.GetKey(down) ? -1 : 0,
             }.normalized;
 
             return ret;

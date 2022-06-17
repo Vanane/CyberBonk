@@ -17,9 +17,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Debug.Log(ItemRepository.GetInstance() == null);
-        RangedWeaponItem gun = ItemRepository.GetInstance().CopyItem<RangedWeaponItem>(22);
-        player.inventory.AddItem(gun);
-        player.EquipWeapon(gun);
+        RangedWeaponItem smg = ItemRepository.GetInstance().GetInstanceOfItem<RangedWeaponItem>(21);
+        RangedWeaponItem shotgun = ItemRepository.GetInstance().GetInstanceOfItem<RangedWeaponItem>(22);
+        
+        player.inventory.AddItem(smg);
+        player.inventory.AddItem(shotgun);
+        player.inventory.SetMainWeapon(smg);
+        player.inventory.SetSideWeapon(shotgun);
+        player.EquipWeapon(smg);
+        player.ToggleWeapon(false);
     }
 
     // Update is called once per frame
@@ -55,11 +61,13 @@ public class GameManager : MonoBehaviour
 
     public void OnClickR(bool firstClick)
     {
+
     }
 
 
     public void OnClickM(bool firstClick)
     {
+
     }
 
 
@@ -70,6 +78,8 @@ public class GameManager : MonoBehaviour
 
     public void OnE(bool firstClick)
     {
+        if(firstClick)
+            player.ToggleWeapon();
     }
 
 
@@ -98,6 +108,19 @@ public class GameManager : MonoBehaviour
 
     public void OnL(bool firstClick)
     {
+    }
+
+    public void OnAlpha1(bool firstClick)
+    {
+        if(firstClick)
+            player.EquipWeapon(player.inventory.GetMainWeapon());
+    }
+
+
+    public void OnAlpha2(bool firstClick)
+    {
+        if (firstClick)
+            player.EquipWeapon(player.inventory.GetSideWeapon());
     }
 
 

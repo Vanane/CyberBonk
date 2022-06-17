@@ -17,7 +17,7 @@ namespace Assets.Scripts.Business
         }
 
 
-        override public void Equip(WeaponItem weapon)
+        override public void SetWeapon(WeaponItem weapon)
         {
             MeshFilter weaponMesh = weaponModel.GetComponent<MeshFilter>();
             weaponItem = (RangedWeaponItem) weapon;

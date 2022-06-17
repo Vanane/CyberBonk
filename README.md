@@ -59,7 +59,7 @@ This is more of a sorted-ish chores list than a roadmap, but still gives an idea
   	- [ ] Using consumables
   - [x] Search option
 - [ ] Controls
-  - [ ] Weapon switching
+  - [x] Weapon switching
 - [ ] City improvements
   - [ ] Better daylight
   - [ ] Day/night cycle

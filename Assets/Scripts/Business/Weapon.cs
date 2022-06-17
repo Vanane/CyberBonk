@@ -6,6 +6,9 @@ namespace Assets.Scripts.Business
 {
     /// <summary>
     /// MonoBehaviour that represents the behaviour of the player's weapon.
+    /// Not to be confounded with WeaponItem :
+    /// - Weapon is a component of Unity, that contains the logic for attacking, reloading and switching
+    /// - WeaponItem is a business class that contains the specs of a weapon, only the data part
     /// </summary>
     public abstract class Weapon : MonoBehaviour
     {
@@ -25,7 +28,7 @@ namespace Assets.Scripts.Business
         }
 
 
-        virtual public void Equip(WeaponItem weapon)
+        virtual public void SetWeapon(WeaponItem weapon)
         {
             MeshFilter weaponMesh = weaponModel.GetComponent<MeshFilter>();
             weaponItem = weapon;

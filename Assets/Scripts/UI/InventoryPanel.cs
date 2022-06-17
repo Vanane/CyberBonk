@@ -49,14 +49,19 @@ public class InventoryPanel : UIPanel
     }
 
 
+    /// <summary>
+    /// Creates the inventory slots of the inventory panel
+    /// </summary>
+    /// <param name="grid"></param>
+    /// <param name="content"></param>
     private void CreateSlots(GridLayoutGroup grid, RectTransform content)
     {
         slotList = new List<GameObject>();
-        int invCount = player.inventory.items.Count;
+        int invCount = player.inventory.GetItemCount();
         int colCount = Mathf.FloorToInt(content.rect.width / (grid.cellSize.x + grid.spacing.x));
         int slotCount = colCount * (Mathf.FloorToInt(invCount / colCount) + 1);
 
-        Dictionary<UsableItem, int>.KeyCollection.Enumerator itemIterator = player.inventory.items.Keys.GetEnumerator();
+        Dictionary<Item, int>.Enumerator itemIterator = player.inventory.GetEnumerator();
 
         for (int i = 0; i < slotCount; i++)
         {
@@ -65,7 +70,7 @@ public class InventoryPanel : UIPanel
             slotList.Add(slot);
 
             if(itemIterator.MoveNext())
-                slot.GetComponent<InventorySlot>().SetItem(itemIterator.Current);
+                slot.GetComponent<InventorySlot>().SetItem(itemIterator.Current.Key);
         }
     }
 }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Business.Items
 {
+    /// <summary>
+    /// Represents an item that has interactions : consumables, weapons, etc.
+    /// </summary>
     public abstract class UsableItem : Item
     {
         public virtual void UseItem()

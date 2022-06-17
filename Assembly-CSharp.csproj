@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2BB589A9-93F5-14FB-348F-3263DD410F74}</ProjectGuid>
+    <ProjectGuid>{FD612A86-D7F2-8123-C660-29D62F398CB6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -55,20 +55,25 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Business\Items\Item.cs" />
     <Compile Include="Assets\Scripts\UI\InventorySlot.cs" />
+    <Compile Include="Assets\Scripts\Business\MeleeWeapon.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanel.cs" />
     <Compile Include="Assets\Scripts\Business\Items\RangedWeaponItem.cs" />
     <Compile Include="Assets\Scripts\Business\Items\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Business\Items\WeaponItem.cs" />
     <Compile Include="Assets\Scripts\Interfaces\Collision\ICollideBullet.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Business\Weapon.cs" />
     <Compile Include="Assets\Scripts\Business\Player.cs" />
     <Compile Include="Assets\Scripts\UI\TopDownCameraTracker.cs" />
+    <Compile Include="Assets\Scripts\Business\Items\MeleeWeaponItem.cs" />
     <Compile Include="Assets\Scripts\UI\InventoryPanel.cs" />
     <Compile Include="Assets\Scripts\UI\SearchField.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\Business\RangedWeapon.cs" />
     <Compile Include="Assets\Scripts\Business\Items\BulletItem.cs" />
     <Compile Include="Assets\Scripts\MoInput.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Business\UnhandedWeapon.cs" />
     <Compile Include="Assets\Scripts\UI\PausePanel.cs" />
     <Compile Include="Assets\Scripts\Business\Items\UsableItem.cs" />
     <Compile Include="Assets\Scripts\UI\SelectedItemSlot.cs" />
@@ -76,11 +81,8 @@
     <Compile Include="Assets\Scripts\Managers\InputManager.cs" />
     <Compile Include="Assets\Scripts\Business\Items\ItemRepository.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
-    <Compile Include="Assets\Scripts\Business\Items\WeaponItem.cs" />
-    <Compile Include="Assets\Scripts\Business\Items\MeleeWeaponItem.cs" />
-    <Compile Include="Assets\Scripts\Business\RangedWeapon.cs" />
-    <Compile Include="Assets\Scripts\Business\MeleeWeapon.cs" />
-    <Compile Include="Assets\Scripts\Business\UnhandedWeapon.cs" />
+    <Compile Include="Assets\tempdeadanimation.cs" />
+    <Compile Include="Assets\Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -686,7 +688,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="RoadArchitect.csproj">
-      <Project>{71E182CD-BEF4-4A1B-EAAD-97863FB61393}</Project>
+      <Project>{D4568684-E3D6-1423-92B4-686306FDF50A}</Project>
       <Name>RoadArchitect</Name>
     </ProjectReference>
   </ItemGroup>

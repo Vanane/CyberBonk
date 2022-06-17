@@ -8,12 +8,14 @@ using UnityExtensions;
 public class Player : MonoBehaviour
 {
     public Inventory inventory;
-    public Weapon weapon;
-
-    // Player Stats
-    public float velocity, speedDecay;
+    public Weapon weaponComponent;
 
     public Rigidbody body;
+    
+    // Player stats and states
+    public float velocity, speedDecay;
+
+    public bool weaponDrawn;
 
     public Player()
     {
@@ -27,29 +29,66 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody>();
     }
 
+    private void FixedUpdate()
+    {
+        // Manual drag and slow down
+        body.velocity -= new Vector3(body.velocity.x, 0, body.velocity.z) * speedDecay;
+    }
+
 
     public void EquipWeapon(WeaponItem weaponItem)
     {
-        GameObject weaponGO = weapon.gameObject;
-        if(!weapon.IsCurrentEquipped(weaponItem))
+        if (inventory.IsInInventory(weaponItem))
         {
-            Weapon newWeapon;
-            switch(weaponItem)
+            GameObject weaponGO = weaponComponent.gameObject;
+            if(!weaponComponent.IsCurrentEquipped(weaponItem))
             {
-                case RangedWeaponItem r:
-                    newWeapon = weaponGO.AddComponent<RangedWeapon>();
-                    break;
-                case MeleeWeaponItem m:
-                    newWeapon = weaponGO.AddComponent<MeleeWeapon>();
-                    break;
-                default:
-                    newWeapon = weaponGO.AddComponent<UnhandedWeapon>();
-                    break;
-            }
-            Destroy(weapon);
+                Weapon newWeapon;
+                switch(weaponItem)
+                {
+                    case RangedWeaponItem r:
+                        newWeapon = weaponGO.AddComponent<RangedWeapon>();
+                        break;
+                    case MeleeWeaponItem m:
+                        newWeapon = weaponGO.AddComponent<MeleeWeapon>();
+                        break;
+                    default:
+                        newWeapon = weaponGO.AddComponent<UnhandedWeapon>();
+                        break;
+                }
+                Destroy(weaponComponent);
 
-            weapon = newWeapon;
-            weapon.Equip(weaponItem);
+                weaponComponent = newWeapon;
+                weaponComponent.SetWeapon(weaponItem);
+            }
+            ToggleWeapon(true);
+        }
+    }
+
+
+    /// <summary>
+    /// Draw or lay down the weapon, depending of its previous state
+    /// </summary>
+    public void ToggleWeapon()
+    {
+        ToggleWeapon(!weaponDrawn);
+    }
+
+
+    /// <summary>
+    /// Draw or lay down the weapon, depending of the given parameter. <see cref="ToggleWeapon()"/>
+    /// </summary>
+    public void ToggleWeapon(bool toggle)
+    {
+        if(toggle)
+        {
+            weaponComponent.gameObject.transform.Rotate(new Vector3(-90, 0, 0));
+            weaponDrawn = true;
+        }
+        else
+        {
+            weaponComponent.gameObject.transform.Rotate(new Vector3(90, 0, 0));
+            weaponDrawn = false;
         }
     }
 
@@ -60,20 +99,24 @@ public class Player : MonoBehaviour
     /// <param name="isFirstClick">True if the click is a first click, false if a maintained click</param>
     public void Attack(bool isFirstClick)
     {
-        weapon.Attack(isFirstClick);
+        if (!weaponDrawn)
+            ToggleWeapon();
+        else
+            weaponComponent.Attack(isFirstClick);
     }
 
 
     public void ReloadWeapon()
     {
-        weapon.Reload();
+        if (!weaponDrawn)
+            ToggleWeapon();
+        else
+            weaponComponent.Reload();
     }
 
 
     public void Move(Vector3 direction)
     {
-        body.velocity -= new Vector3(body.velocity.x, 0, body.velocity.z) * speedDecay;
-        //Vector3 force = move * player.velocity * 1 / Mathf.Max(1, body.velocity.magnitude);
         Vector3 force = direction * velocity * (velocity - body.velocity.magnitude);
         body.AddForce(force);
     }
@@ -81,17 +124,22 @@ public class Player : MonoBehaviour
 
     public void LookAt(Vector3 mousePos)
     {
+        // Rotate the player
         Vector3 worldPos = Camera.main.WorldToScreenPoint(transform.position);
         worldPos.x = mousePos.x - worldPos.x;
         worldPos.y = mousePos.y - worldPos.y;
         float angle = Mathf.Atan2(worldPos.x, worldPos.y) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
 
-        Vector3 weaponWorldPos = Camera.main.WorldToScreenPoint(weapon.transform.position);
-        weaponWorldPos.x = mousePos.x - weaponWorldPos.x;
-        weaponWorldPos.y = mousePos.y - weaponWorldPos.y;
-        float weaponAngle = Mathf.Atan2(weaponWorldPos.x, weaponWorldPos.y) * Mathf.Rad2Deg;
-        weapon.transform.rotation = Quaternion.Euler(new Vector3(0, weaponAngle, 0));
+        if(weaponDrawn)
+        {
+            // Rotate the weapon
+            Vector3 weaponWorldPos = Camera.main.WorldToScreenPoint(weaponComponent.transform.position);
+            weaponWorldPos.x = mousePos.x - weaponWorldPos.x;
+            weaponWorldPos.y = mousePos.y - weaponWorldPos.y;
+            float weaponAngle = Mathf.Atan2(weaponWorldPos.x, weaponWorldPos.y) * Mathf.Rad2Deg;
+            weaponComponent.transform.rotation = Quaternion.Euler(new Vector3(0, weaponAngle, 0));
+        }
     }
 
 
