@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
             Attack(firstAttack);
             firstAttack = false;
         }
+        LookAt(lookTarget);
     }
 
 
@@ -191,7 +192,7 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            Vector2 direction2D = (Vector2)context.ReadValueAsObject();
+            Vector2 direction2D = context.ReadValue<Vector2>();
             moveDirection = new Vector3(direction2D.x, 0, direction2D.y);
 
             moveAction.Enable();
@@ -209,6 +210,11 @@ public class Player : MonoBehaviour
         }
         else if (context.canceled)
             attackAction.Disable();
+    }
+
+    public void OnActionLook(CallbackContext context)
+    {
+        lookTarget = context.ReadValue<Vector2>();
     }
     #endregion
 }
