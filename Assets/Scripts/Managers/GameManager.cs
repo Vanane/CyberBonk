@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
         player.inventory.AddItem(shotgun);
         player.inventory.SetMainWeapon(smg);
         player.inventory.SetSideWeapon(shotgun);
-        player.EquipWeapon(smg);
-        player.ToggleWeapon(false);
+        player.EquipWeapon(shotgun);
+        player.ToggleWeapon(true);
     }
 
     // Update is called once per frame

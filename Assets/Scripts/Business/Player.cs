@@ -3,7 +3,9 @@ using Assets.Scripts.Business.Items;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityExtensions;
+using static UnityEngine.InputSystem.InputAction;
 
 public class Player : MonoBehaviour
 {
@@ -17,9 +19,23 @@ public class Player : MonoBehaviour
 
     public bool weaponDrawn;
 
+
+    private InputAction moveAction;
+    Vector3 moveDirection;
+    
+    private InputAction lookAction;
+    Vector3 lookTarget;
+    
+    private InputAction attackAction;
+    bool firstAttack;
+
     public Player()
     {
-        inventory = new Inventory();
+        inventory = new Inventory();        
+
+        moveAction = new InputAction();
+        lookAction = new InputAction();
+        attackAction = new InputAction();
     }
 
 
@@ -29,10 +45,24 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody>();
     }
 
+
+    private void Update()
+    {
+        if (attackAction.enabled)
+        {
+            Attack(firstAttack);
+            firstAttack = false;
+        }
+    }
+
+
     private void FixedUpdate()
     {
         // Manual drag and slow down
-        body.velocity -= new Vector3(body.velocity.x, 0, body.velocity.z) * speedDecay;
+        if (moveAction.enabled)
+            Move(moveDirection);
+        else
+            body.velocity -= new Vector3(body.velocity.x, 0, body.velocity.z) * speedDecay;
     }
 
 
@@ -67,33 +97,6 @@ public class Player : MonoBehaviour
 
 
     /// <summary>
-    /// Draw or lay down the weapon, depending of its previous state
-    /// </summary>
-    public void ToggleWeapon()
-    {
-        ToggleWeapon(!weaponDrawn);
-    }
-
-
-    /// <summary>
-    /// Draw or lay down the weapon, depending of the given parameter. <see cref="ToggleWeapon()"/>
-    /// </summary>
-    public void ToggleWeapon(bool toggle)
-    {
-        if(toggle)
-        {
-            weaponComponent.gameObject.transform.Rotate(new Vector3(-90, 0, 0));
-            weaponDrawn = true;
-        }
-        else
-        {
-            weaponComponent.gameObject.transform.Rotate(new Vector3(90, 0, 0));
-            weaponDrawn = false;
-        }
-    }
-
-
-    /// <summary>
     /// Asks the weapon to attack
     /// </summary>
     /// <param name="isFirstClick">True if the click is a first click, false if a maintained click</param>
@@ -112,6 +115,45 @@ public class Player : MonoBehaviour
             ToggleWeapon();
         else
             weaponComponent.Reload();
+    }
+
+
+
+    /// <summary>
+    /// Draw or lay down the weapon, depending of its previous state
+    /// </summary>
+    public void ToggleWeapon()
+    {
+        ToggleWeapon(!weaponDrawn);
+    }
+
+
+    /// <summary>
+    /// Draw or lay down the weapon, depending of the given parameter. <see cref="ToggleWeapon()"/>
+    /// </summary>
+    public void ToggleWeapon(bool toggle)
+    {
+        if (toggle)
+        {
+            weaponComponent.gameObject.transform.localScale = new Vector3(1, 1, 1);
+            weaponDrawn = true;
+        }
+        else
+        {
+            weaponComponent.gameObject.transform.localScale = new Vector3(0, 0, 0);
+            weaponDrawn = false;
+        }
+    }
+
+
+    public void EquipMainWeapon()
+    {
+        EquipWeapon(inventory.GetMainWeapon());
+    }
+
+    public void EquipSideWeapon()
+    {
+        EquipWeapon(inventory.GetSideWeapon());
     }
 
 
@@ -143,4 +185,30 @@ public class Player : MonoBehaviour
     }
 
 
+    #region Action Input Enablers
+    /* Actions tat can be held for an indefinite amount of time, like moving and shooting */
+    public void OnActionMove(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Vector2 direction2D = (Vector2)context.ReadValueAsObject();
+            moveDirection = new Vector3(direction2D.x, 0, direction2D.y);
+
+            moveAction.Enable();
+        }
+        else if (context.canceled)
+            moveAction.Disable();
+    }
+
+    public void OnActionAttack(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            firstAttack = true;
+            attackAction.Enable();            
+        }
+        else if (context.canceled)
+            attackAction.Disable();
+    }
+    #endregion
 }
